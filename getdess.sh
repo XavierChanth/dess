@@ -26,7 +26,7 @@ atsign_dirs="/home/atsign/dess /home/atsign/base /home/atsign/atsign/var /home/a
 # Repository files
 repo_url="https://raw.githubusercontent.com/atsign-foundation/dess/trunk"
 atsign_files="base/.env base/docker-swarm.yaml base/setup.sh base/shepherd.yaml base/restart.sh"
-dess_scripts="create reshowqr"
+script='dess'
 
 #* END SCRIPT GLOBALS
 
@@ -246,15 +246,13 @@ test_atsign_user () {
 get_dess_scripts () {
   # curl create and reshowqr from repo
   # to /usr/local/bin
-  for script in $dess_scripts; do
-    curl -fsSL "$repo_url"/"$script".sh -o /usr/local/bin/dess-"$script"
-    DESS_SCRIPT_RESULT=$?
-    if [[ $DESS_SCRIPT_RESULT -gt 0 ]]; then
-      error_exit 6
-    fi
-    chmod 774 /usr/local/bin/dess-"$script"
-    ln -s /usr/local/bin/dess-"$script" /usr/bin/dess-"$script"
-  done
+  curl -fsSL "$repo_url"/"$script".sh -o /usr/local/bin/"$script"
+  DESS_SCRIPT_RESULT=$?
+  if [[ $DESS_SCRIPT_RESULT -gt 0 ]]; then
+    error_exit 6
+  fi
+  chmod 774 /usr/local/bin/"$script"
+  ln -s /usr/local/bin/"$script" /usr/bin/"$script"
 }
 
 post_install() {
