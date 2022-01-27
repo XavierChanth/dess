@@ -257,7 +257,7 @@ get_dess_scripts () {
 
 post_install() {
   echo;
-  echo 'Dess installed, please move on to the sudo dess-create command.'
+  echo 'dess installed, please move on to the "sudo dess create" command.'
 }
 
 do_install () {
